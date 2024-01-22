@@ -1,4 +1,4 @@
-# SPRINGBOOT KONG MICROSERVICE
+# USER INFORMATION SERVICE WITH OBSERVABILITY AND MONITORING
 ## About the Service
 This repository contains a simple springboot microservice that retrieves user 
 information based on the id specified in the url field. 
