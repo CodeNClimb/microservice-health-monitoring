@@ -6,4 +6,4 @@ services:
   - name: user-details
     paths:
     - "/user/(?<id>[^/]+)" #regex to map any id number to this route
-    strip_path: false
+    strip_path: false   

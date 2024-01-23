@@ -1,4 +1,4 @@
-# SPRINGBOOT KONG MICROSERVICE
+# USER INFORMATION SERVICE WITH OBSERVABILITY AND MONITORING METRICS
 ## About the Service
 This repository contains a simple springboot microservice that retrieves user 
 information based on the id specified in the url field. 
@@ -20,13 +20,43 @@ This data automatically populates the database when the application starts.
 
 ## Setting Up - CLONE THE PROJECT
 - Open a terminal or command prompt (Powershell on Windows and Terminal or linux or macOS)
-- Navigate to the directory you want to clone the project. e.g. `cd path/to/your/directory`
-- Run `git clone git@github.com:msackey-IW/user-info-service.git`
+- Navigate to the directory in which you want to clone the project as shown below
+```powershell
+cd path/to/your/directory
+```
+- Run 
+```powershell
+git clone git@github.com:msackey-IW/user-info-service.git
+```
 - Alternatively, in the [project repository](https://github.com/msackey-IW/user-info-service) you can navigate to `code -> Open with GitHub Desktop` and clone the repository through GitHub Desktop.
-- Run `cd user-info-service`.
-- Run `mvn clean package` in the terminal - This packages the springboot application into a .jar file.
-- Run `docker-compose up` in the terminal - This creates and runs the microservice from the .jar file.
-- The endpoints are exposed via a kong gateway through the following url `http://localhost:8000/user/{id}`. 
+- Run the code snippet below in the terminal.
+```powershell
+cd user-info-service
+```
+- Run the code snippet below in the terminal based on your operating system.
+```powershell
+<# Linux/MacOs #>
+mvn clean package -DskipTests
+OR
+./mvnw clean package -DskipTests
+
+<# Windows #>
+mvn clean package -DskipTests
+OR
+.\mvnw clean package -DskipTests 
+
+```
+The above packages the springboot application into a .jar file.
+
+- Run the code snippet below in your terminal.
+```powershell
+docker-compose up -d
+```
+The above creates and runs the microservice from the .jar file in detached mode.
+- The endpoints are exposed via a kong gateway through the following url 
+```curl
+http://localhost:8000/user/{id}
+```
 - The id is field is a dynamic resource and returns all information attached to the user with the specified id.
 - The database can be accessed through [PGADMIN4](http://localhost:5050). The default username and password for this service is available at `user-info-service/docker-compose.yaml` associated with environment variables "PGADMIN_DEFAULT_EMAIL" and "PGADMIN_DEFAULT_PASSWORD".
 - The default login credentials for the database are available in `user-info-service/docker-compose.yaml`
@@ -34,13 +64,26 @@ This data automatically populates the database when the application starts.
 ## KONG API GATEWAY
 - The application comes with a preloaded kong service to retrieve user information. 
 - However, more services may be attached as required. Visit the Kong [official docs](https://docs.konghq.com/gateway/latest/get-started/services-and-routes/) to learn more about creating services and routes.
-- The Kong GUI can be viewed at `http://localhost:8002`.
-- All services can be viewed at `http://localhost:8001/services`
-- Routes related to a service may be viewed at `http://localhost:8001/services/YOUR-SERVICE-NAME/routes`
+- The Kong GUI can accessed via the url below.
+```curl
+http://localhost:8002
+```
+- All KONG related services are available via the url below.
+ ```curl
+ http://localhost:8001/services
+ ```
+- Routes related to a service may be viewed at the url below
+```curl
+http://localhost:8001/services/YOUR-SERVICE-NAME/routes
+```
 ## TESTING THE APPLICATION
 - Open Postman API
 - Create a new "GET Request" by navigation to `new -> Http -> GET`.
-- In the url tab, enter `http://localhost:8000/user/{id}` where the id is a dynamic integer referencing the user id to be retrieved.
+- In the url tab, enter 
+```curl
+http://localhost:8000/user/{id}
+``` 
+where the id is a dynamic integer referencing the user id to be retrieved.
 - The id field must be a valid positive integer
 - A sample request to `http://localhost:8000/user/1` will return the output below
 ```json
@@ -52,3 +95,40 @@ This data automatically populates the database when the application starts.
     "sex": "Male"
 }
 ```
+
+## APPLICATION MONITORING
+This application comes equipped prometheus and grafana to ensure you can keep tabs on the health of your application. 
+
+### Prometheus
+Prometheus is a monitoring tool used to track the health of your application.
+Health metrics can be viewed using the link below.
+```curl
+http://localhost:9090
+```
+
+### Grafana
+Grafana allows users to create dashboards and visualizations that make tracking the health metrics of an application convenient and easily accessible.
+
+The default login details are shown below
+```json
+{
+    "Email or username": "admin",
+    "Password": "admin"
+}
+```
+Change these default values for a more secure application.
+Grafana is accessible using the url below
+```curl
+http://localhost:3000
+```
+To view a sample dashboard, login to grafana with the above credentials.
+
+Visit the [grafana docs](https://grafana.com/docs/grafana/latest/getting-started/build-first-dashboard/) to learn how to create your own custom dashboards.
+
+## CLOSING UP
+Run the snippet below in the terminal.
+```powershell
+docker-compose down
+```
+
+This will shut down all docker containers and images related to this build.

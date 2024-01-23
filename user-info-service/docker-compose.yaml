@@ -34,7 +34,7 @@ services:
     image: dpage/pgadmin4:latest
     restart: always
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@ecommerce.com
+      PGADMIN_DEFAULT_EMAIL: admin@user-service.com
       PGADMIN_DEFAULT_PASSWORD: admin
     ports:
       - "5050:80"
@@ -42,7 +42,26 @@ services:
       - db
     networks:
       - app-net
-      
+  grafana:
+      image: grafana/grafana
+      ports:
+        - 3000:3000
+      volumes:
+        - grafana-data:/var/lib/grafana
+        - ./config/grafana-datasource.yml:/etc/grafana/provisioning/datasources/grafana-datasource.yml
+      depends_on:
+        - prometheus
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - 9090:9090
+    volumes:
+      - ./config/prometheus.yaml:/etc/prometheus/prometheus.yaml
+      - prometheus-data:/prometheus
+    command: --config.file=/etc/prometheus/prometheus.yaml
+    depends_on:
+    - app
   kong:
     image: kong
     volumes:
@@ -68,11 +87,18 @@ services:
       - "8445:8445"
       - "8003:8003"
       - "8004:8004"
-    
+  grafana-dashboard:
+    build:
+      context: ./config/
+      dockerfile: Dockerfile
+    container_name: grafana-dashboard
+    restart: "no"
     depends_on:
-      - app
+      - kong
+      - grafana
     networks:
       - kong-net
+
 networks:
   app-net:
   kong-net:
@@ -81,3 +107,5 @@ networks:
 volumes:
   db:
   kong-database:
+  prometheus-data:
+  grafana-data:
