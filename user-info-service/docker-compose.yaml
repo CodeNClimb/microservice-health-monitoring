@@ -87,17 +87,6 @@ services:
       - "8445:8445"
       - "8003:8003"
       - "8004:8004"
-  grafana-dashboard:
-    build:
-      context: ./config/
-      dockerfile: Dockerfile
-    container_name: grafana-dashboard
-    restart: "no"
-    depends_on:
-      - kong
-      - grafana
-    networks:
-      - kong-net
 
 networks:
   app-net:

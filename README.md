@@ -121,7 +121,8 @@ Grafana is accessible using the url below
 ```curl
 http://localhost:3000
 ```
-To view a sample dashboard, login to grafana with the above credentials.
+To view a sample dashboard, login to grafana with the above credentials. <br/>
+Creating a dashboard requires attaching a datasource but in this case, one has already been automatically configured. The configuration file is available at `user-info-service/config/grafana-datasource.yml`
 <br/>Once on the homepage, navigate to `menu-> dashboards -> new -> import -> upload json dashboard JSON file`.
 The JSON file is located at `user-info-service/config/grafana-dashboard.json`. <br/>
 You should now be able to view the api_calls_total metric which count how many API calls have been made to the service in the past hour. <br/>
