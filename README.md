@@ -28,7 +28,7 @@ cd path/to/your/directory
 ```powershell
 git clone git@github.com:msackey-IW/user-info-service.git
 ```
-- Alternatively, in the [project repository](https://github.com/msackey-IW/user-info-service) you can navigate to `code -> Open with GitHub Desktop` and clone the repository through GitHub Desktop.
+- Alternatively, in the [project repository](https://github.com/msackey-IW/user-info-service-observability) you can navigate to `code -> Open with GitHub Desktop` and clone the repository through GitHub Desktop.
 - Run the code snippet below in the terminal.
 ```powershell
 cd user-info-service
