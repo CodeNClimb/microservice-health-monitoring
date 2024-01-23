@@ -105,6 +105,7 @@ Health metrics can be viewed using the link below.
 ```curl
 http://localhost:9090
 ```
+- To view a sample metric, input `api_calls_totals` into the search bar and click on graph. This will show the total api calls metric.
 
 ### Grafana
 Grafana allows users to create dashboards and visualizations that make tracking the health metrics of an application convenient and easily accessible.
@@ -121,13 +122,25 @@ Grafana is accessible using the url below
 ```curl
 http://localhost:3000
 ```
-To view a sample dashboard, login to grafana with the above credentials. <br/>
-Creating a dashboard requires attaching a datasource but in this case, one has already been automatically configured. The configuration file is available at `user-info-service/config/grafana-datasource.yml`
-<br/>Once on the homepage, navigate to `menu-> dashboards -> new -> import -> upload json dashboard JSON file`.
-The JSON file is located at `user-info-service/config/grafana-dashboard.json`. <br/>
-You should now be able to view the api_calls_total metric which count how many API calls have been made to the service in the past hour. <br/>
+- To view a sample dashboard, login to grafana with the above credentials.
+- Creating a dashboard requires attaching a datasource but in this case, one has already been automatically configured. The configuration file is available at in the directory below.
+```curl
+user-info-service/config/grafana-datasource.yml
+```
+- Once on the homepage, navigate to the directory below. Your Graphical interface should be identical to the image shown below. 
+```
+menu-> dashboards -> new -> import -> upload json dashboard JSON file
+```
+<br/>
+
 ![grafana image](https://github.com/msackey-IW/user-info-service-observability/blob/main/assets/grafana-dashboard.jpg)
-Visit the [grafana docs](https://grafana.com/docs/grafana/latest/getting-started/build-first-dashboard/) to learn how to create your own custom dashboards.
+
+- The JSON file is located in the directory below.
+ ```
+ user-info-service/config/grafana-dashboard.json
+ ```
+- You should now be able to view the api_calls_total metric which count how many API calls have been made to the service in the past hour. 
+- Visit the [grafana docs](https://grafana.com/docs/grafana/latest/getting-started/build-first-dashboard/) to learn how to create your own custom dashboards.
 
 ## CLOSING UP
 Run the snippet below in the terminal.
