@@ -122,7 +122,7 @@ Grafana is accessible using the url below
 http://localhost:3000
 ```
 To view a sample dashboard, login to grafana with the above credentials.
-
+![grafana image](https://github.com/msackey-IW/user-info-service-observability/blob/main/assets/grafana-dashboard.jpg)
 Visit the [grafana docs](https://grafana.com/docs/grafana/latest/getting-started/build-first-dashboard/) to learn how to create your own custom dashboards.
 
 ## CLOSING UP
