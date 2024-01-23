@@ -38,19 +38,21 @@ cd user-info-service
 <# Linux/MacOs #>
 mvn clean package -DskipTests
 OR
-./mvn clean package -DskipTests
+./mvnw clean package -DskipTests
 
 <# Windows #>
 mvn clean package -DskipTests
 OR
-.\mvn clean package -DskipTests 
+.\mvnw clean package -DskipTests 
 
 ```
 The above packages the springboot application into a .jar file.
 
 - Run the code snippet below in your terminal.
-```docker-compose up```
-The above creates and runs the microservice from the .jar file.
+```powershell
+docker-compose up -d
+```
+The above creates and runs the microservice from the .jar file in detached mode.
 - The endpoints are exposed via a kong gateway through the following url 
 ```curl
 http://localhost:8000/user/{id}
@@ -96,6 +98,37 @@ where the id is a dynamic integer referencing the user id to be retrieved.
 
 ## APPLICATION MONITORING
 This application comes equipped prometheus and grafana to ensure you can keep tabs on the health of your application. 
+
 ### Prometheus
+Prometheus is a monitoring tool used to track the health of your application.
+Health metrics can be viewed using the link below.
+```curl
+http://localhost:9090
+```
 
 ### Grafana
+Grafana allows users to create dashboards and visualizations that make tracking the health metrics of an application convenient and easily accessible.
+
+The default login details are shown below
+```json
+{
+    "Email or username": "admin",
+    "Password": "admin"
+}
+```
+Change these default values for a more secure application.
+Grafana is accessible using the url below
+```curl
+http://localhost:3000
+```
+To view a sample dashboard, login to grafana with the above credentials.
+
+Visit the [grafana docs](https://grafana.com/docs/grafana/latest/getting-started/build-first-dashboard/) to learn how to create your own custom dashboards.
+
+## CLOSING UP
+Run the snippet below in the terminal.
+```powershell
+docker-compose down
+```
+
+This will shut down all docker containers and images related to this build.
