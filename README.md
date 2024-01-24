@@ -123,7 +123,8 @@ Grafana is accessible using the url below
 http://localhost:3000
 ```
 - To view a sample dashboard, login to grafana with the above credentials.
-- Creating a dashboard requires attaching a datasource and visualisation. This has however been automatically added as part of the build. 
+- Creating a dashboard requires attaching a datasource and visualisation. This has however been automatically added as part of the build.
+ - Navigate to `menu -> dashboards -> API Requests(Total)` to view the visualisation. 
 - You should now be able to view the api_calls_total metric which count how many API calls have been made to the service in the past hour. 
 - Send requests to the user service as instructed above to populate the api_calls_total metric. 
 - Visit the [grafana docs](https://grafana.com/docs/grafana/latest/getting-started/build-first-dashboard/) to learn how to create your own custom dashboards.
