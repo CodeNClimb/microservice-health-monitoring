@@ -123,15 +123,7 @@ Grafana is accessible using the url below
 http://localhost:3000
 ```
 - To view a sample dashboard, login to grafana with the above credentials.
-- Creating a dashboard requires attaching a datasource but in this case, one has already been automatically configured. The configuration file is available at in the directory below.
-```curl
-user-info-service/config/grafana-datasource.yml
-```
-- Once on the homepage, navigate to the directory below. Your Graphical interface should be identical to the image shown below. 
-```
-menu-> dashboards -> new -> import -> upload json dashboard JSON file
-```
-<br/>
+- Creating a dashboard requires attaching a datasource and visualisation. This has however been automatically added as part of the build. 
 
 ![grafana image](https://github.com/msackey-IW/user-info-service-observability/blob/main/assets/grafana-dashboard.jpg)
 
